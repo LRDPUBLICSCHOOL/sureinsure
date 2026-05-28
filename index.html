@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sure Insure — Insurance Advisor & Agencies</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0B1120;
+    --ink-soft: #1E2D45;
+    --paper: #F7F5F0;
+    --paper-warm: #EDE9E0;
+    --accent: #E8630A;
+    --accent-light: #FF8736;
+    --accent-pale: #FFF0E6;
+    --steel: #3A5068;
+    --steel-light: #5D7A96;
+    --mist: #C8D8E8;
+    --white: #FFFFFF;
+    --gold: #C9992A;
+    --gold-pale: #FDF6E3;
+    --radius: 4px;
+    --radius-lg: 12px;
+    --radius-xl: 24px;
+    font-size: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER / NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    height: 72px;
+    background: rgba(11,17,32,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,99,10,0.2);
+  }
+
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  /* SVG inline logo mirroring the orange car + SURE INSURE style */
+  .logo-svg { width: 48px; height: 48px; }
+
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.1;
+    color: var(--white);
+    letter-spacing: 0.03em;
+  }
+  .logo-text span { color: var(--accent); display: block; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px; }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mist);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent-light); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--white) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent-light); color: var(--white); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(232,99,10,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 20%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(93,122,150,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    padding: 8rem 3rem 6rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px; height: 2px;
+    background: var(--accent);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-block;
+    border: 1px solid rgba(200,216,232,0.35);
+    color: var(--mist);
+    padding: 0.85rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent-light); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(200,216,232,0.15);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--steel-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .hero-right {
+    position: relative;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-visual {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Large decorative car silhouette */
+  .car-hero-svg {
+    width: 90%;
+    max-width: 560px;
+    opacity: 0.92;
+    filter: drop-shadow(0 0 60px rgba(232,99,10,0.25));
+    animation: floatcar 4s ease-in-out infinite;
+  }
+  @keyframes floatcar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(93,122,150,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(93,122,150,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 6rem 4rem; }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    color: var(--steel);
+    line-height: 1.75;
+    max-width: 540px;
+  }
+
+  /* ─── TICKER BAR ─── */
+  .ticker-bar {
+    background: var(--accent);
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex;
+    gap: 0;
+    animation: ticker 28s linear infinite;
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.85rem 2.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .ticker-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    flex-shrink: 0;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── ABOUT ─── */
+  .about-section {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--ink);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(232,99,10,0.15);
+  }
+
+  .advisor-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .advisor-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.9rem;
+    font-size: 0.9rem;
+    color: var(--mist);
+  }
+  .contact-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(232,99,10,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .about-accent-box {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: var(--accent);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    color: var(--white);
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(232,99,10,0.35);
+  }
+  .accent-box-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .accent-box-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; margin-top: 4px; }
+
+  .about-text .section-desc { max-width: 100%; }
+
+  .expertise-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2rem;
+  }
+  .pill {
+    background: var(--paper);
+    border: 1px solid var(--paper-warm);
+    color: var(--steel);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-section {
+    background: var(--paper);
+  }
+
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px;
+    background: var(--paper-warm);
+    border: 1.5px solid var(--paper-warm);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 2rem 1.5rem;
+    transition: background 0.25s;
+    cursor: default;
+    position: relative;
+  }
+  .service-card:hover {
+    background: var(--ink);
+  }
+  .service-card:hover .svc-title { color: var(--white); }
+  .service-card:hover .svc-desc { color: var(--mist); }
+  .service-card:hover .svc-icon-wrap { background: rgba(232,99,10,0.2); }
+  .service-card:hover .svc-num { color: rgba(255,255,255,0.08); }
+
+  .svc-num {
+    position: absolute;
+    top: 1rem; right: 1.2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(0,0,0,0.04);
+    line-height: 1;
+    transition: color 0.25s;
+  }
+
+  .svc-icon-wrap {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    background: var(--accent-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: background 0.25s;
+  }
+
+  .svc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+    transition: color 0.25s;
+  }
+
+  .svc-desc {
+    font-size: 0.8rem;
+    color: var(--steel-light);
+    line-height: 1.6;
+    transition: color 0.25s;
+  }
+
+  /* ─── INSURERS STRIP ─── */
+  .partners-section {
+    background: var(--ink);
+    padding: 4rem;
+    text-align: center;
+  }
+  .partners-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    margin-bottom: 2.5rem;
+  }
+  .partners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .partner-chip {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--mist);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.55rem 1.2rem;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .partner-chip:hover { background: rgba(232,99,10,0.15); border-color: var(--accent); color: var(--white); }
+
+  /* ─── WHY CHOOSE ─── */
+  .why-section {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .why-list { margin-top: 2.5rem; }
+  .why-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--paper-warm);
+  }
+  .why-item:last-child { border-bottom: none; }
+
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 28px;
+    margin-top: 2px;
+  }
+  .why-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+  .why-body { font-size: 0.85rem; color: var(--steel); line-height: 1.65; }
+
+  .why-visual {
+    background: var(--paper);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    position: relative;
+  }
+
+  .big-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--accent);
+    line-height: 0.8;
+    margin-bottom: 1.5rem;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.55;
+    margin-bottom: 2rem;
+  }
+  .quote-attr {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+
+  /* ─── CTA BAND ─── */
+  .cta-section {
+    background: var(--accent);
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .cta-sub { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-top: 0.75rem; }
+
+  .btn-white {
+    display: inline-block;
+    background: var(--white);
+    color: var(--accent);
+    padding: 1rem 2.2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: transform 0.15s;
+  }
+  .btn-white:hover { transform: translateY(-2px); }
+
+  /* ─── CONTACT ─── */
+  .contact-section {
+    background: var(--paper);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-form-wrap {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    border: 1px solid var(--paper-warm);
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.75rem;
+  }
+
+  .form-row { margin-bottom: 1.1rem; }
+  .form-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 0.45rem;
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    border: 1px solid var(--paper-warm);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--paper);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--accent);
+    background: var(--white);
+  }
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-btn {
+    width: 100%;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .form-btn:hover { background: var(--accent-light); }
+
+  .contact-info-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  .info-block {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.75rem;
+  }
+  .info-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .info-key {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    margin-bottom: 0.3rem;
+  }
+  .info-val {
+    font-size: 0.9rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .info-val a { color: var(--accent); text-decoration: none; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    padding: 3rem 4rem 2rem;
+    color: var(--mist);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 1.5rem;
+  }
+  .footer-brand p {
+    font-size: 0.85rem;
+    color: var(--steel-light);
+    line-height: 1.7;
+    margin-top: 1rem;
+    max-width: 280px;
+  }
+  .footer-col-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a {
+    font-size: 0.85rem;
+    color: var(--steel-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--steel-light);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+  .delay-4 { animation-delay: 0.6s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-section, .why-section, .contact-section, .services-header { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-section { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-left { padding: 7rem 1.5rem 4rem; }
+  }
+  
+  /*----------car new logo ------- */
+  .hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.hero-logo {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  object-fit: contain;
+
+  /* Optional premium effect */
+  filter: drop-shadow(0 0 20px rgba(232, 99, 10, 0.25));
+
+  /* Smooth animation */
+  transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+  transform: scale(1.02);
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="logo-wrap">
+    <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Sure Insure logo">
+      <!-- car body -->
+      <path d="M8 29H40V34H8z" fill="#E8630A" rx="2"/>
+      <path d="M10 29L14 22C15.5 19 18 18 24 18C30 18 32.5 19 34 22L38 29" fill="#E8630A"/>
+      <path d="M10 29L14 22C15.5 19 18 18 24 18C30 18 32.5 19 34 22L38 29" stroke="#C95000" stroke-width="0.5"/>
+      <!-- windshield -->
+      <path d="M16 28L19 22H29L32 28Z" fill="#fff" fill-opacity="0.18"/>
+      <!-- wheels -->
+      <circle cx="15" cy="34" r="4" fill="#1E2D45" stroke="#E8630A" stroke-width="1.5"/>
+      <circle cx="15" cy="34" r="1.5" fill="#E8630A"/>
+      <circle cx="33" cy="34" r="4" fill="#1E2D45" stroke="#E8630A" stroke-width="1.5"/>
+      <circle cx="33" cy="34" r="1.5" fill="#E8630A"/>
+    </svg>
+    <div class="logo-text">SURE INSURE <span>Insurance Advisor & Agencies</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up">Trusted Insurance Advisor</div>
+    <h1 class="hero-title fade-up delay-1">Smart Coverage with <em>SURE INSURE</em></h1>
+    <p class="hero-sub fade-up delay-2">Expert guidance across General, Health, Motor, Industrial, and Commercial Insurance — backed by 11+ years of trusted advisory experience in Haridwar and beyond.</p>
+    <div class="hero-actions fade-up delay-3">
+      <a href="#contact" class="btn-primary">Get Free Consultation</a>
+      <a href="#services" class="btn-ghost">Explore Coverage</a>
+    </div>
+    <div class="hero-stats fade-up delay-4">
+      <div>
+        <div class="stat-num">11+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Insurer Partners</div>
+      </div>
+      <div>
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Coverage Types</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-grid-lines"></div>
+    <div class="hero-visual">
+      
+	  <img 
+    src="C:\Users\HOME\Downloads\logo_trans.png" 
+    alt="Sure Insure Logo" 
+    class="hero-logo"
+  />
+	  
+	  
+	  
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="ticker-dot"></span>Car & Motor Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Health Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>General Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Industrial Fire Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Industrial Marine Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Contractor All Risk Policy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Erection All Risk Policy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Workmen Compensation Policy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Car & Motor Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Health Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>General Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Industrial Fire Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Industrial Marine Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Contractor All Risk Policy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Erection All Risk Policy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Workmen Compensation Policy</span>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="about-section" id="about">
+  <div class="about-visual">
+    <div class="about-card">
+      <!-- Mini inline logo -->
+      <svg width="42" height="42" viewBox="0 0 48 48" fill="none" style="margin-bottom:1.25rem" aria-hidden="true">
+        <path d="M8 29H40V34H8z" fill="#E8630A"/>
+        <path d="M10 29L14 22C15.5 19 18 18 24 18C30 18 32.5 19 34 22L38 29" fill="#E8630A"/>
+        <path d="M16 28L19 22H29L32 28Z" fill="#fff" fill-opacity="0.15"/>
+        <circle cx="15" cy="34" r="4" fill="#1E2D45" stroke="#E8630A" stroke-width="1.5"/>
+        <circle cx="15" cy="34" r="1.5" fill="#E8630A"/>
+        <circle cx="33" cy="34" r="4" fill="#1E2D45" stroke="#E8630A" stroke-width="1.5"/>
+        <circle cx="33" cy="34" r="1.5" fill="#E8630A"/>
+      </svg>
+      <div class="advisor-name">VIPIN SHARMA</div>
+      <div class="advisor-title">Insurance Advisor & Agencies</div>
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg width="14" height="14" fill="none" stroke="#E8630A" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.07.01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.04z"/></svg>
+        </div>
+        <div>+91 9897844332 &nbsp;|&nbsp; +91 9259052744</div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg width="14" height="14" fill="none" stroke="#E8630A" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div style="font-size:0.82rem">vipin.sharmahdwr@gmail.com<br>sure.insure2023@gmail.com</div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">
+          <svg width="14" height="14" fill="none" stroke="#E8630A" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div style="font-size:0.82rem">T-9 Tower, Model Colony, Ranipur More, Haridwar – 249401<br></div>
+      </div>
+      <div class="about-accent-box">
+        <div class="accent-box-num">11+</div>
+        <div class="accent-box-label">Years of Trust</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-text">
+    <div class="section-label">About the Advisor</div>
+    <h2 class="section-title">Insurance Made Simple, Protection Made Certain</h2>
+    <p class="section-desc">Vipin Sharma is a seasoned insurance advisor serving individuals, families, and businesses across Haridwar. With deep expertise in both personal and commercial insurance, he helps clients navigate complex policies and secure the right coverage at the right premium.</p>
+    <p class="section-desc" style="margin-top:1rem;">From a single car policy to large industrial risk covers — every client receives personalised attention, transparent advice, and swift claim support.</p>
+    <div class="expertise-pills">
+      <span class="pill">General Insurance</span>
+      <span class="pill">Health Insurance</span>
+      <span class="pill">Motor Insurance</span>
+      <span class="pill">Industrial Risks</span>
+      <span class="pill">Marine Insurance</span>
+      <span class="pill">Workmen Compensation</span>
+      <span class="pill">Contractor All Risk</span>
+      <span class="pill">Fire Insurance</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services-section" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What We Cover</div>
+      <h2 class="section-title">Comprehensive Insurance Solutions</h2>
+    </div>
+    <p class="section-desc">From protecting your family's health to safeguarding industrial projects worth crores — we handle it all under one roof.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <span class="svc-num">01</span>
+      <div class="svc-icon-wrap">
+        <svg width="22" height="22" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8zM5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg>
+      </div>
+      <div class="svc-title">Car & Motor Insurance</div>
+      <div class="svc-desc">Comprehensive and third-party motor policies for all vehicle types — cars, trucks, two-wheelers, and commercial vehicles.</div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-num">02</span>
+      <div class="svc-icon-wrap">
+        <svg width="22" height="22" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 10c0 .34-.03.67-.08 1M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9"/><path d="M12 8v4l2 2"/></svg>
+      </div>
+      <div class="svc-title">Industrial Fire Insurance</div>
+      <div class="svc-desc">Safeguard factories, warehouses, and industrial units against fire and allied perils.</div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-num">03</span>
+      <div class="svc-icon-wrap">
+        <svg width="22" height="22" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      </div>
+      <div class="svc-title">Industrial Marine Insurance</div>
+      <div class="svc-desc">Coverage for goods-in-transit, cargo, and marine risks for trade and logistics operations.</div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-num">04</span>
+      <div class="svc-icon-wrap">
+        <svg width="22" height="22" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <div class="svc-title">Contractor All Risk Policy</div>
+      <div class="svc-desc">End-to-end protection for construction projects — material, equipment, and third-party liability.</div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-num">05</span>
+      <div class="svc-icon-wrap">
+        <svg width="22" height="22" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div class="svc-title">Erection All Risk Policy</div>
+      <div class="svc-desc">Specialised cover for plant and machinery erection, installation projects and related risks.</div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-num">06</span>
+      <div class="svc-icon-wrap">
+        <svg width="22" height="22" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="svc-title">Workmen Compensation</div>
+      <div class="svc-desc">Statutory compliance cover protecting your workforce and business from liability in workplace injuries.</div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-num">07</span>
+	  <div class="svc-icon-wrap">
+        <svg width="22" height="22" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="svc-title">General Insurance</div>
+      <div class="svc-desc">Broad protection for property, assets, and liabilities for individuals and businesses.</div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-num">08</span>
+      <div class="svc-icon-wrap">
+        <svg width="22" height="22" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div class="svc-title">Health Insurance</div>
+      <div class="svc-desc">Individual, family floater, and group health plans from India's top insurers — cashless hospitalisation included.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PARTNERS ── -->
+<section class="partners-section" id="partners">
+  <div class="partners-label">Our Insurer Network</div>
+  <div class="partners-grid">
+    <span class="partner-chip">ICICI Lombard General Insurance</span>
+    <span class="partner-chip">TATA AIG General Insurance</span>
+    <span class="partner-chip">Royal Sundaram General Insurance</span>
+    <span class="partner-chip">United India Insurance Co. Ltd.</span>
+    <span class="partner-chip">The New India Assurance Co. Ltd.</span>
+    <span class="partner-chip">HDFC Ergo General Insurance</span>
+    <span class="partner-chip">Star Health & Allied Insurance</span>
+    <span class="partner-chip">Care Health Insurance</span>
+    <span class="partner-chip">Shri Ram General Insurance</span>
+    <span class="partner-chip">SBI General Insurance</span>
+    <span class="partner-chip">Go Digit General Insurance</span>
+    <span class="partner-chip">HDFC Life Insurance</span>
+    <span class="partner-chip">Bajaj Allianz Life Insurance</span>
+    <span class="partner-chip">Reliance Nippon Life Insurance</span>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE ── -->
+<section class="why-section" id="why">
+  <div>
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">The Sure Insure Advantage</h2>
+    <div class="why-list">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <div>
+          <div class="why-title">Multi-Insurer Access</div>
+          <div class="why-body">Access to 14+ leading insurers means you get the best coverage at the most competitive premium — we compare so you don't have to.</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <div>
+          <div class="why-title">Expert Claims Support</div>
+          <div class="why-body">From filing to settlement, Vipin Sharma personally guides you through every step, minimising delays and maximising your claim.</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <div>
+          <div class="why-title">Industrial & Commercial Expertise</div>
+          <div class="why-body">Specialised knowledge in CAR, EAR, Marine, Fire, and Workmen Compensation policies that most retail advisors overlook.</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <div>
+          <div class="why-title">Local Trust, Pan-India Coverage</div>
+          <div class="why-body">Rooted in Haridwar, serving clients across Uttarakhand with policies valid anywhere in India.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-visual">
+    <div class="big-quote">"</div>
+    <div class="quote-text">Insurance is not about expecting the worst — it's about being prepared so the worst never ruins you.</div>
+    <div class="quote-attr">— Vipin Sharma, Sure Insure</div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div>
+    <h2 class="cta-title">Ready to Protect What Matters Most?</h2>
+    <p class="cta-sub">Get a free, no-obligation consultation today. We'll find the perfect policy for your needs.</p>
+  </div>
+  <a href="#contact" class="btn-white">Get Free Quote →</a>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section" id="contact">
+  <div>
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Let's Find Your Perfect Coverage</h2>
+    <p class="section-desc" style="margin-bottom:2.5rem">Reach out for a free consultation. We respond within 24 hours.</p>
+
+    <div class="info-block">
+      <div class="info-icon">
+        <svg width="18" height="18" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.07.01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.04z"/></svg>
+      </div>
+      <div>
+        <div class="info-key">Phone</div>
+        <div class="info-val"><a href="tel:+919897844332">+91 9897844332</a> &nbsp;|&nbsp; <a href="tel:+919259052744">+91 9259052744</a></div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-icon">
+        <svg width="18" height="18" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div>
+        <div class="info-key">Email</div>
+        <div class="info-val"><a href="mailto:vipin.sharmahdwr@gmail.com">vipin.sharmahdwr@gmail.com</a><br><a href="mailto:sure.insure2023@gmail.com">sure.insure2023@gmail.com</a></div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-icon">
+        <svg width="18" height="18" fill="none" stroke="#E8630A" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <div class="info-key">Office Locations</div>
+        <div class="info-val">T-9 Tower, Model Colony, Ranipur More, Haridwar – 249401</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form-wrap">
+    <div class="form-title">Request a Free Quote</div>
+    <div class="form-row">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-input" placeholder="Your name" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">Phone Number</label>
+      <input type="tel" class="form-input" placeholder="+91 xxxxxxxxxx" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">Email Address</label>
+      <input type="email" class="form-input" placeholder="you@example.com" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">Insurance Type</label>
+      <select class="form-select">
+        <option value="">Select coverage type…</option>
+        <option>General Insurance</option>
+        <option>Health Insurance</option>
+        <option>Car / Motor Insurance</option>
+        <option>Industrial Fire Insurance</option>
+        <option>Industrial Marine Insurance</option>
+        <option>Contractor All Risk Policy</option>
+        <option>Erection All Risk Policy</option>
+        <option>Workmen Compensation Policy</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label class="form-label">Message (Optional)</label>
+      <textarea class="form-textarea" placeholder="Tell us briefly about your requirement…"></textarea>
+    </div>
+    <button class="form-btn" onclick="this.textContent='Request Sent ✓'; this.style.background='#3A5068';">Send My Request</button>
+  
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.25rem">
+        <svg width="36" height="36" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M8 29H40V34H8z" fill="#E8630A"/>
+          <path d="M10 29L14 22C15.5 19 18 18 24 18C30 18 32.5 19 34 22L38 29" fill="#E8630A"/>
+          <circle cx="15" cy="34" r="4" fill="#1E2D45" stroke="#E8630A" stroke-width="1.5"/>
+          <circle cx="15" cy="34" r="1.5" fill="#E8630A"/>
+          <circle cx="33" cy="34" r="4" fill="#1E2D45" stroke="#E8630A" stroke-width="1.5"/>
+          <circle cx="33" cy="34" r="1.5" fill="#E8630A"/>
+        </svg>
+        <span style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:1.1rem;color:#fff">SURE INSURE</span>
+      </div>
+      <p>Your trusted insurance advisor in Haridwar — providing expert guidance on personal, health, motor, and industrial insurance since 2008.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">General Insurance</a></li>
+        <li><a href="#services">Health Insurance</a></li>
+        <li><a href="#services">Motor Insurance</a></li>
+        <li><a href="#services">Industrial Fire</a></li>
+        <li><a href="#services">Marine Insurance</a></li>
+        <li><a href="#services">CAR / EAR Policy</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="tel:+919897844332">+91 9897844332</a></li>
+        <li><a href="tel:+919259052744">+91 9259052744</a></li>
+        <li><a href="mailto:vipin.sharmahdwr@gmail.com">vipin.sharmahdwr@gmail.com</a></li>
+        <li><a href="mailto:sure.insure2023@gmail.com">sure.insure2023@gmail.com</a></li>
+        <li style="margin-top:0.8rem; font-size:0.85rem; color:#5D7A96;">Haridwar, Uttarakhand</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Sure Insure — Vipin Sharma. All rights reserved.</span>
+    <span>Insurance Advisor & Agencies, Haridwar</span>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.service-card, .why-item, .info-block, .partner-chip').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
